@@ -35,9 +35,6 @@ export default function ArticleList() {
         </Box>
       )}
       {ArticleObjects}
-      {/*<Article fullArticle={false} />*/}
-      {/*<Article fullArticle={false} />*/}
-      {/*<Article fullArticle={false} />*/}
       <Pagination
         count={5}
         shape="rounded"

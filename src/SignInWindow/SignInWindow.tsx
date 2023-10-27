@@ -53,7 +53,7 @@ export default function SignInWindow() {
                 validate: isValidEmail,
               })}
               helperText={errors.email?.message}
-              error={errors.email}
+              error={Boolean(errors.email)}
               className={styles.input}
             />
           </div>
@@ -65,9 +65,10 @@ export default function SignInWindow() {
               id="Password"
               label="Password"
               variant="outlined"
+              type="password"
               className={styles.input}
               helperText={errors.password?.message}
-              error={errors.password}
+              error={Boolean(errors.password)}
               {...register("password", {
                 required: "необходимо ввести пароль",
               })}
@@ -78,7 +79,9 @@ export default function SignInWindow() {
               Login
             </Button>
           </div>
-          <div className={styles.SignInString}>Dont have an account?</div>
+          <div className={styles.SignInString}>
+            Dont have an account? <NavLink to="/sign-up">Sign up</NavLink>
+          </div>
         </form>
       </div>
     </div>

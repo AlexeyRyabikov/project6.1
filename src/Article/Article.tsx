@@ -2,8 +2,6 @@ import styles from "./Article.module.scss";
 import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Box, Button, Chip, IconButton } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -79,7 +77,6 @@ export default function Article({
       if (isLiked) {
         // @ts-ignore
         return () => {
-          console.log("fff");
           dispatch(
             // @ts-ignore
             NeededFunc({
@@ -99,11 +96,6 @@ export default function Article({
   const handleClose = () => {
     setOpen(false);
   };
-  const HandleLike = CreateHandleLikeFunction(true);
-  // else {
-  //   return () => {};
-  // }
-  //}
   return (
     <div className={styles.ArticleWindow}>
       <div className={styles.Header}>
@@ -125,8 +117,6 @@ export default function Article({
             </IconButton>
           </div>
           <div>{JsxTagArray}</div>
-          {/*<Chip label="tag1" variant="outlined" size="small" />*/}
-          {/* eslint-disable-next-line react/jsx-no-undef */}
         </div>
         <div className={styles.AuthorInfo}>
           <div className={styles.AuthorStrings}>
@@ -142,7 +132,7 @@ export default function Article({
               alt="The house from the offer."
               src={image}
               onError={({ currentTarget }) => {
-                currentTarget.onerror = null; // prevents looping
+                currentTarget.onerror = null;
                 currentTarget.src = "/IconFace.svg";
               }}
             />
@@ -165,11 +155,6 @@ export default function Article({
                 color="warning"
                 className={`${styles.DeleteButton}`}
                 onClick={handleClickOpen}
-                // onClick={(event) => {
-                //   GetOneArticle(token, slug, true).then((res) =>
-                //     console.log(res),
-                //   );
-                //}}
               >
                 Delete
               </Button>
@@ -187,19 +172,17 @@ export default function Article({
                   <Button
                     onClick={() => {
                       handleClose();
-                      GetOneArticle(token, slug, true)
-                        .then((res) => console.log(res))
-                        .then(() => {
-                          dispatch(
-                            // @ts-ignore
-                            ReduxGetArticles({
-                              PageNum: CurrentPage,
-                              PageSize: 10,
-                              token: token,
-                            }),
-                          );
-                          navigate("/articles");
-                        });
+                      GetOneArticle(token, slug, true).then(() => {
+                        dispatch(
+                          // @ts-ignore
+                          ReduxGetArticles({
+                            PageNum: CurrentPage,
+                            PageSize: 10,
+                            token: token,
+                          }),
+                        );
+                        navigate("/articles");
+                      });
                     }}
                     autoFocus
                   >

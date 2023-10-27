@@ -12,10 +12,6 @@ import { useParams } from "react-router-dom";
 import FullArticlePage from "../FullArticlePage/FullArticlePage";
 import { useSelector } from "react-redux";
 export default function MainContent() {
-  //return <ArticleList />;
-  // return <CreateNewArticleWindow />;
-  // return <SignInWindow />;
-  //<RegisterWindow />;
   const { title, tagList, body, description, slug } = useSelector(
     (state: any) => state.OneArticle.Article,
   );

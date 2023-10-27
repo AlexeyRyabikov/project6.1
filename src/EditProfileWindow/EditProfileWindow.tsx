@@ -1,11 +1,5 @@
 import styles from "./EditProfileWindow.module.scss";
-import {
-  Button,
-  Checkbox,
-  FormControlLabel,
-  InputLabel,
-  TextField,
-} from "@mui/material";
+import { Button, InputLabel, TextField } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -63,7 +57,7 @@ export default function EditProfileWindow() {
           <TextField
             {...register("username")}
             helperText={errors.username?.message}
-            error={errors.username}
+            error={Boolean(errors.username)}
             id="UserName"
             label="user name"
             defaultValue={CurrentName}
@@ -78,7 +72,7 @@ export default function EditProfileWindow() {
           <TextField
             {...register("email", { validate: isValidEmail })}
             helperText={errors.email?.message}
-            error={errors.email}
+            error={Boolean(errors.email)}
             id="Email address"
             label="new Email"
             variant="outlined"
@@ -96,7 +90,7 @@ export default function EditProfileWindow() {
               maxLength: { value: 40, message: "максимум 40" },
             })}
             helperText={errors.password?.message}
-            error={errors.password}
+            error={Boolean(errors.password)}
             id="NewPassword"
             label="New password"
             variant="outlined"
@@ -113,7 +107,7 @@ export default function EditProfileWindow() {
             variant="outlined"
             className={styles.input}
             helperText={errors.imageURL?.message}
-            error={errors.imageURL}
+            error={Boolean(errors.imageURL)}
             {...register("imageURL", { validate: isValidURL })}
           />
         </div>

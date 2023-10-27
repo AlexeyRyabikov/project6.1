@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { ReduxGetArticles } from "../ArtclesSlice/ArticlesSlice";
 import { EditProfile } from "../UserFetchFunctions/FetchFunctions";
 const LoggingIn = (state: any, action: any) => {
-  console.log(action.payload);
   state.Info.email = action.payload[1].user.email;
   state.Info.name = action.payload[1].user.username;
   state.Info.ImageURL = action.payload[1].user.image

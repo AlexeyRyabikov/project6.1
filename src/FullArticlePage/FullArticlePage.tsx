@@ -18,9 +18,6 @@ export default function FullArticlePage() {
   useEffect(() => {
     // @ts-ignore
     dispatch(ReduxGetOneArticle(slug));
-    // return () => {
-    //   dispatch(actions.SetEmptyArticle());
-    // };
   }, []);
   const Atricle = useSelector((state: any) => state.OneArticle.Article);
   return <Article article={Atricle} fullArticle={true} />;

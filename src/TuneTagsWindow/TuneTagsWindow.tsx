@@ -21,7 +21,6 @@ export default function TuneTagsWindow({
           id="Email address"
           label="Tag"
           variant="outlined"
-          //defaultValue={item}
           value={item}
           onChange={(event: any) => changeTagVal(i, event.target.value)}
           className={`${styles.input} ${styles.TextArea}`}

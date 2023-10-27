@@ -16,11 +16,9 @@ const OneFullArticleSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(ReduxGetOneArticle.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.Article = action.payload[1].article;
     });
     builder.addCase(FavoriteOneArticle.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.Article = action.payload[1].article;
     });
   },
@@ -29,14 +27,9 @@ const ReduxGetOneArticle = createAsyncThunk(
   "FullArticle/ReduxGetOneArticle",
   (slug: string, { getState }) => {
     const PresentState: any = getState();
-    console.log(PresentState.userInfo.token);
     return GetOneArticle(PresentState.userInfo.token, slug).then((res) =>
       Promise.all([res.status, res.json()]),
     );
-    // const offset: number = (PageNum - 1) * PageSize;
-    // return GetArticles(token, offset, PageSize).then((response) => {
-    //   console.log("хуй бля!");
-    //   return response.json();
   },
 );
 const FavoriteOneArticle = createAsyncThunk(
@@ -50,8 +43,6 @@ const FavoriteOneArticle = createAsyncThunk(
     token: string;
     deleteReq?: boolean;
   }) => {
-    console.log("oneArticle работает");
-    console.log(slug, token);
     return FavoriteArticle(token, slug, deleteReq).then((res) =>
       Promise.all([res.status, res.json()]),
     );

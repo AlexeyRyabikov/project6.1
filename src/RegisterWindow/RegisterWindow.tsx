@@ -10,16 +10,11 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { RegisterRequest } from "../UserFetchFunctions/FetchFunctions";
 import { useDispatch } from "react-redux";
 import { actions, ReduxRegister } from "../UserSlice/UserSlice";
 import { useForm } from "react-hook-form";
 function RegisterWindow(): any {
   const dispatch = useDispatch();
-  // const [userName, SetUserName] = useState("");
-  // const [email, SetEmail] = useState("");
-  // const [password, SetPassword] = useState("");
-  // const [RepeatPassword, SetRepeatPassword] = useState("");
   const navigate = useNavigate();
   const {
     register,
@@ -58,9 +53,6 @@ function RegisterWindow(): any {
               navigate: navigate,
             }),
           );
-          // RegisterRequest(UserName, Email, Password)
-          //   .then((res: any) => HandleLogIn(res, dispatch))
-          //   .then((isLogined: boolean) => isLogined && navigate("/"));
         })}
       >
         <div className={styles.InputBlock}>
@@ -69,7 +61,7 @@ function RegisterWindow(): any {
           </InputLabel>
           <TextField
             helperText={errors.UserName?.message}
-            error={errors.UserName ? true : false}
+            error={Boolean(errors.UserName)}
             {...register("UserName", {
               minLength: { value: 3, message: "минимум 3" },
               maxLength: { value: 20, message: "максимум 20" },
@@ -79,8 +71,6 @@ function RegisterWindow(): any {
             label="Username"
             className={styles.input}
             variant="outlined"
-            // value={userName}
-            // onChange={(e) => SetUserName(e.target.value)}
           />
         </div>
         <div className={styles.InputBlock}>
@@ -89,7 +79,7 @@ function RegisterWindow(): any {
           </InputLabel>
           <TextField
             helperText={errors.Email?.message}
-            error={errors.Email ? true : false}
+            error={Boolean(errors.Email)}
             {...register("Email", {
               required: true,
               validate: handleEmailValidation,
@@ -97,8 +87,6 @@ function RegisterWindow(): any {
             id="Email address"
             label="Email address"
             variant="outlined"
-            // value={email}
-            // onChange={(e) => SetEmail(e.target.value)}
             className={styles.input}
           />
         </div>
@@ -114,10 +102,11 @@ function RegisterWindow(): any {
               validate: PasswordMatch,
             })}
             helperText={errors.Password?.message}
-            error={errors.Password ? true : false}
+            error={Boolean(errors.Password)}
             id="Password"
             label="Password"
             variant="outlined"
+            type="password"
             // value={password}
             // onChange={(e) => SetPassword(e.target.value)}
             className={styles.input}
@@ -129,17 +118,16 @@ function RegisterWindow(): any {
           </InputLabel>
           <TextField
             helperText={errors.PasswordRepeat?.message}
-            error={errors.PasswordRepeat ? true : false}
+            error={Boolean(errors.PasswordRepeat)}
             {...register("PasswordRepeat", {
               required: true,
               validate: PasswordMatch,
             })}
+            type="password"
             id="Repeat password"
             label="Repeat password"
             variant="outlined"
-            // value={RepeatPassword}
             className={styles.input}
-            // onChange={(e) => SetRepeatPassword(e.target.value)}
           />
         </div>
         <FormControlLabel

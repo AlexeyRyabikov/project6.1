@@ -29,14 +29,10 @@ const Reducers = createSlice({
     builder.addCase(
       ReduxFavoriteArticle.fulfilled,
       (state: any, action: any) => {
-        console.log(action.payload[1].article.favoritesCount);
         const IndexLikedArticle = state.Articles.findIndex(
           (val: any) => val.slug === action.payload[1].article.slug,
         );
-        console.log(state.Articles[IndexLikedArticle].favoritesCount);
         state.Articles[IndexLikedArticle] = action.payload[1].article;
-        // state.Articles[IndexLikedArticle].favorited = true;
-        //action.payload.articles;
       },
     );
   },
@@ -54,7 +50,6 @@ const ReduxGetArticles = createAsyncThunk(
   }) => {
     const offset: number = (PageNum - 1) * PageSize;
     return GetArticles(token, offset, PageSize).then((response) => {
-      console.log("хуй бля!");
       return response.json();
     });
   },
