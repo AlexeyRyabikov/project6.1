@@ -150,7 +150,7 @@ function RegisterWindow(): any {
         </Button>
       </form>
       <div className={styles.SignInString}>
-        Already have an account? <NavLink to="/SignIn">Sign up</NavLink>
+        Already have an account? <NavLink to="/sign-in">Sign up</NavLink>
       </div>
     </div>
   );
