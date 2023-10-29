@@ -30,21 +30,21 @@ export default function HeaderSigned() {
       <div className={`${styles.Frame} ${styles.Name}`}>
         <Button variant="text" onClick={() => navigate("/profile")}>
           {CurrentName}
+          <div className={styles.IconFrame}>
+            <Box
+              component="img"
+              className={styles.Icon}
+              width="50px"
+              height="50px"
+              alt="The house from the offer."
+              src={ImageURL}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = "/IconFace.svg";
+              }}
+            />
+          </div>
         </Button>
-      </div>
-      <div className={styles.Frame}>
-        <Box
-          component="img"
-          className={styles.Icon}
-          width="50px"
-          height="50px"
-          alt="The house from the offer."
-          src={ImageURL}
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null; // prevents looping
-            currentTarget.src = "/IconFace.svg";
-          }}
-        />
       </div>
       <div className={styles.Frame}>
         <Button

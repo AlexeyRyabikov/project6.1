@@ -1,7 +1,6 @@
 import styles from "./TuneTagsWindow.module.scss";
 import React, { useState } from "react";
 import { Button, InputLabel, TextField } from "@mui/material";
-
 export default function TuneTagsWindow({
   tagsArray = [],
   deleteTag,

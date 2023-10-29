@@ -48,7 +48,7 @@ const ReduxLogIn = createAsyncThunk(
           type: "server",
           message: "пароль или логин неверен",
         });
-        setError("email", {
+        setError("Email", {
           type: "server",
           message: "пароль или логин неверен",
         });
@@ -68,10 +68,27 @@ const ReduxLogIn = createAsyncThunk(
 );
 const ReduxRegister = createAsyncThunk(
   "Reducers/ReduxRegisterFetch",
-  ({ username, email, password, navigate }: any, { dispatch, getState }) => {
+  (
+    { username, email, password, navigate, setError }: any,
+    { dispatch, getState },
+  ) => {
     return RegisterRequest(username, email, password, navigate).then(
       (res: Array<any>) => {
         const state: any = getState();
+        if (res[0] === 422) {
+          if (res[1].errors.username === "is already taken.") {
+            setError("UserName", {
+              type: "server",
+              message: "имя уже используется",
+            });
+          }
+          if (res[1].errors.email === "is already taken.") {
+            setError("Email", {
+              type: "Email",
+              message: "email уже используется",
+            });
+          }
+        }
         dispatch(
           // @ts-ignore
           ReduxGetArticles({

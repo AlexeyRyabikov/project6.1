@@ -19,6 +19,7 @@ function RegisterWindow(): any {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   }: any = useForm({ mode: "onSubmit" });
   const isValidEmail = (email: string) =>
@@ -26,7 +27,6 @@ function RegisterWindow(): any {
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
       email,
     );
-  console.log(errors);
   const handleEmailValidation = (email: string) => {
     const isValid = isValidEmail(email);
     return isValid ? isValid : "e-mail некорректен";
@@ -51,6 +51,7 @@ function RegisterWindow(): any {
               email: Email,
               password: Password,
               navigate: navigate,
+              setError: setError,
             }),
           );
         })}

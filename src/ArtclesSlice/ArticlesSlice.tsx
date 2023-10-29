@@ -19,7 +19,6 @@ const Reducers = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(ReduxGetArticles.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.Articles = action.payload.articles;
       state.loading = false;
     });
@@ -65,7 +64,6 @@ const ReduxFavoriteArticle = createAsyncThunk(
     token: string;
     deleteReq?: boolean;
   }) => {
-    console.log(slug, token);
     return FavoriteArticle(token, slug, deleteReq).then((res) =>
       Promise.all([res.status, res.json()]),
     );

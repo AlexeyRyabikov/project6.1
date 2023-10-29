@@ -42,9 +42,7 @@ function LogInRequest(email: string, password: string, navigate: any) {
     body: JSON.stringify(RequestBody),
   };
   const url = "https://blog.kata.academy/api/users/login";
-  console.log("Хуй бля", RequestOptions);
   return fetch(url, RequestOptions).then((res: any) => {
-    console.log(res);
     return Promise.all([res.status, res.json(), navigate]);
   });
 }
@@ -73,7 +71,6 @@ function EditProfile(
     body: JSON.stringify(RequestBody),
   };
   const url = "https://blog.kata.academy/api/user";
-  console.log("Хуй бля", RequestOptions);
   return fetch(url, RequestOptions).then((res: any) => {
     return Promise.all([res.status, res.json(), navigate]);
   });

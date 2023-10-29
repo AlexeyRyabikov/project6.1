@@ -6,6 +6,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { Box, Button, Chip, IconButton } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { parseISO, format } from "date-fns";
 import Markdown from "react-markdown";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -38,7 +39,9 @@ export default function Article({
     favorited,
     slug,
     author,
+    updatedAt,
   } = article;
+  const data = format(parseISO(updatedAt), `MMMM d,yyyy`);
   const { username, image } = author;
   //if (fullArticle) {
   const id = String(useParams().id);
@@ -121,7 +124,7 @@ export default function Article({
         <div className={styles.AuthorInfo}>
           <div className={styles.AuthorStrings}>
             <div className={styles.AuthorName}>{username}</div>
-            <div className={styles.AuthorDate}>March 5, 2020</div>
+            <div className={styles.AuthorDate}>{data}</div>
           </div>
           <div>
             <Box

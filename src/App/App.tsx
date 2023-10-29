@@ -15,7 +15,6 @@ function App() {
   const dispatch = useDispatch();
   const token = useSelector((state: any) => state.userInfo.token);
   useEffect(() => {
-    console.log("work!");
     // @ts-ignore
     dispatch(ReduxGetArticles({ PageNum: 1, PageSize: 10, token: token }));
   }, []);
