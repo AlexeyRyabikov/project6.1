@@ -9,6 +9,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { parseISO, format } from "date-fns";
 import Markdown from "react-markdown";
 import { useNavigate, useParams } from "react-router-dom";
+//@ts-ignore ts ругается на импорт картинки как компонента
+import iconSrc from "./IconFace.svg";
 import { routePasses } from "../MainContent/MainContent";
 import {
   reduxFavoriteArticle,
@@ -122,7 +124,7 @@ export default function Article({
               src={image}
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null;
-                currentTarget.src = "/IconFace.svg";
+                currentTarget.src = iconSrc;
               }}
             />
           </div>
